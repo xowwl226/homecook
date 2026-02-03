@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Site{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+    {% block extra_css %}{% endblock %} 
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">홈</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">로그아웃</a>
+            {% else %}
+                <a href="{% url 'login' %}">로그인</a>
+                <a href="{% url 'signup' %}">회원가입</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 My Site</p>
+    </footer>
+</body>
+</html>
